@@ -9,7 +9,7 @@ function cVel = streamfunctioncolor(X,Y,U,V,Streamfunction,v)
 %    cbar = STREAMCOLOR(X,Y,U,V,Streamfunction,v)
 %    cbar = STREAMCOLOR(X,Y,Streamfunction,v) 
 %             Computes U,V from Streamfunction and X,Y. Assumes dx=dy.
-%
+% 
 %    Assumes X,Y are meshgrids
 %            U,V are velocities defined on the meshgrid
 %            Streamfunction is the Stokes Streamfunction defined on the meshgrid
