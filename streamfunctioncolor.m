@@ -44,7 +44,7 @@ if nargin < 5
 end
 
 % Line width for contours
-lw = 0.5;
+lw = 1.0;
 
 % Find the colormap we're using
 cmap = colormap(gca);
@@ -108,9 +108,10 @@ for i=1:length(contours)
     numVertices = size(c, 1);
     
     for j=2:numVertices
-        relU = interp2(X, Y, relUField, c(j, 1), c(j, 2));
-        relU = min(relU, 1); % Ensure relU is <= 1
-        color = cmap(ceil(relU*length(cmap)), :); % Get color from colormap
+        relU = interp2(X, Y, relUField, c(j, 1), c(j, 2));        
+        ind = ceil(relU*length(cmap)); % Color map index
+        ind = min(max(1, ind), length(cmap)); % Ensure index is within allowed range
+        color = cmap(ind, :); % Get color from colormap
         plot([c(j, 1), c(j-1, 1)], [c(j, 2), c(j-1, 2)], 'Color', color, 'LineWidth', lw);
     end
 end
@@ -121,6 +122,3 @@ hold off;
 end
 
 
-function [U,V] = computeVelocity(X,Y,Streamfunction)
-
-end
